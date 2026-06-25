@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Clone</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#eaeded;
+        }
+
+        /* Navbar */
+        .navbar{
+            background:#131921;
+            color:white;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 30px;
+        }
+
+        .logo{
+            font-size:28px;
+            font-weight:bold;
+            color:#ff9900;
+        }
+
+        .search-box{
+            display:flex;
+            width:50%;
+        }
+
+        .search-box input{
+            width:100%;
+            padding:10px;
+            border:none;
+            outline:none;
+        }
+
+        .search-box button{
+            padding:10px 20px;
+            background:#febd69;
+            border:none;
+            cursor:pointer;
+        }
+
+        .cart{
+            font-size:20px;
+            cursor:pointer;
+        }
+
+        /* Hero Section */
+        .hero{
+            height:300px;
+            background:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            font-size:40px;
+            font-weight:bold;
+        }
+
+        /* Products */
+        .products{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+            padding:30px;
+        }
+
+        .card{
+            background:white;
+            border-radius:10px;
+            padding:15px;
+            text-align:center;
+            box-shadow:0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .card h3{
+            margin:10px 0;
+        }
+
+        .price{
+            color:green;
+            font-size:20px;
+            margin-bottom:10px;
+        }
+
+        .card button{
+            background:#ffd814;
+            border:none;
+            padding:10px 20px;
+            border-radius:20px;
+            cursor:pointer;
+        }
+
+        .card button:hover{
+            background:#f7ca00;
+        }
+
+        footer{
+            background:#131921;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">amazon</div>
+
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Search products...">
+            <button onclick="searchProduct()">Search</button>
+        </div>
+
+        <div class="cart">
+            🛒 Cart: <span id="cartCount">0</span>
+        </div>
+    </div>
+
+    <div class="hero">
+        Welcome to Amazon Clone
+    </div>
+
+    <div class="products" id="productContainer">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="">
+            <h3>Shoes</h3>
+            <p class="price">₹1999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500" alt="">
+            <h3>Smartphone</h3>
+            <p class="price">₹24999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="">
+            <h3>Watch</h3>
+            <p class="price">₹2999</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="">
+            <h3>Headphones</h3>
+            <p class="price">₹1499</p>
+            <button onclick="addToCart()">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 Amazon Clone | Created using HTML, CSS & JavaScript
+    </footer>
+
+    <script>
+        let cart = 0;
+
+        function addToCart(){
+            cart++;
+            document.getElementById("cartCount").innerText = cart;
+            alert("Product Added to Cart!");
+        }
+
+        function searchProduct(){
+            let input = document
+                .getElementById("search")
+                .value
+                .toLowerCase();
+
+            let cards = document.querySelectorAll(".card");
+
+            cards.forEach(card => {
+                let productName = card
+                    .querySelector("h3")
+                    .innerText
+                    .toLowerCase();
+
+                if(productName.includes(input)){
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
